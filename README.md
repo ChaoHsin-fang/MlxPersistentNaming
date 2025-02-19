@@ -6,6 +6,16 @@ Standardizing the identification of Mellanox Ethernet cards can significantly im
 ## Create udev rules
 /etc/udev/rules.d/70-persistent-net.rules
 ### Example
+
+KERNELS parameter corresponds to the busid of the Mellanox network card
+
+```shell
+# udevadm info /sys/class/infiniband/mlx5_0  | grep infiniband/mlx5_0
+P:/devices/pci0000:0b/0000:0b:01.0/0000:0c:00.0/0000:0d:00.0/0000:0e:00.0/infiniband/mlx5_0
+E:DEVPATH=/devices/pci0000:0b/0000:0b:01.0/0000:0c:00.0/0000:0d:00.0/0000:0e:00.0/infiniband/mlx5_0
+```
+mlx5_0 busid is 0000:0e:00.0,similarly,find the busid of other network cards and fill it in the KERNELS parameter.
+
 ```shell
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:f1:00.0", NAME="ens100np0"
 SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:f1:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_100"
