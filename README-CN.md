@@ -1,22 +1,19 @@
-[English](./README.md) | [简体中文](./README-CN.md)
-
 # MlxPersistentNaming
-Persistent naming for Mellanox network card device identifier
-## Highlights
-Standardizing the identification of Mellanox Ethernet cards can significantly improve operational efficiency, avoid issues caused by dynamic naming, simplify automation, and facilitate cluster expansion and troubleshooting. This naming convention is particularly well-suited for large-scale compute clusters or high-performance networking environments, ensuring the stability and consistency of network configurations.
+永久性修改Mellanox网卡设备标识符
+## 亮点
+标准化Mellanox以太网卡的识别可以显著提高操作效率，避免动态命名引起的问题，简化自动化流程，并促进集群扩展和故障排除。这种命名约定特别适用于大规模计算集群或高性能网络环境，确保网络配置的稳定性和一致性。
 
-## Create udev rules
+## 创建udev规则
 /etc/udev/rules.d/70-persistent-net.rules
-### Example
-
-KERNELS parameter corresponds to the busid of the Mellanox network card
+### 示例
+参数KERNELS对应的是Mellanox网卡的busid
 
 ```shell
 # udevadm info /sys/class/infiniband/mlx5_0  | grep infiniband/mlx5_0
 P:/devices/pci0000:0b/0000:0b:01.0/0000:0c:00.0/0000:0d:00.0/0000:0e:00.0/infiniband/mlx5_0
 E:DEVPATH=/devices/pci0000:0b/0000:0b:01.0/0000:0c:00.0/0000:0d:00.0/0000:0e:00.0/infiniband/mlx5_0
 ```
-mlx5_0 busid is 0000:0e:00.0,similarly,find the busid of other network cards and fill it in the KERNELS parameter.
+mlx5_0 busid 是 0000:0e:00.0,以此类推找到其他网卡的KERNELS参数。
 
 ```shell
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:f1:00.0", NAME="ens100np0"
@@ -44,7 +41,7 @@ SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:s2:00.0", NAME="e
 SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:s2:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_107"
 
 ```
-## Reboot the machine to apply the configuration
+## 重启机器使配置生效
 ```shell
 ibdev2netdev 
 mlx5_100 port 1 ==> ens100np0 (Up)
@@ -56,8 +53,9 @@ mlx5_105 port 1 ==> ens105np0 (Up)
 mlx5_106 port 1 ==> ens106np0 (Up)
 mlx5_107 port 1 ==> ens107np0 (Up)
 ```
-## Precautions
-The modified Mellanox network card identifier name must not be the same as the previous one; otherwise, it will not take effect.
+## 注意事项
+修改后的Mellanox网卡标识名称不能与之前的名称相同，否则将不会生效。
+
 
 
 
