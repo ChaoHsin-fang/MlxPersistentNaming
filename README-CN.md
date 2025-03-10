@@ -16,6 +16,13 @@ E:DEVPATH=/devices/pci0000:0b/0000:0b:01.0/0000:0c:00.0/0000:0d:00.0/0000:0e:00.
 mlx5_0 busid 是 0000:0e:00.0,以此类推找到其他网卡的KERNELS参数。
 
 ```shell
+Example
+for i in 0 3 4 5 6 8 9 10; do
+    echo mlx5_$i
+    udevadm info /sys/class/infiniband/mlx5_$i | grep "infiniband/mlx5_$i"| grep -o '0000:[a-f0-9]\+:[0-9]\+\.[0-9]\+' | tail -n1
+done
+```
+```shell
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:f1:00.0", NAME="ens100np0"
 SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:f1:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_100"
 
