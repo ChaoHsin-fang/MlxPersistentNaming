@@ -1,0 +1,23 @@
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_0}}:00.0", NAME="ibs100"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_0}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_100"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_1}}:00.0", NAME="ibs101"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_1}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_101"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_2}}:00.0", NAME="ibs102"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_2}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_102"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_3}}:00.0", NAME="ibs103"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_3}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_103"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_4}}:00.0", NAME="ibs104"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_4}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_104"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_5}}:00.0", NAME="ibs105"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_5}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_105"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_6}}:00.0", NAME="ibs106"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_6}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_106"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", KERNELS=="0000:{{busid_7}}:00.0", NAME="ibs107"
+SUBSYSTEM=="infiniband", ACTION=="add", KERNELS=="0000:{{busid_7}}:00.0", PROGRAM="rdma_rename %k NAME_FIXED mlx5_107"
